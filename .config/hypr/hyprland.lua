@@ -7,4 +7,5 @@ require("modules.layout")
 require("modules.misc")
 require("modules.input")
 require("modules.windowrules")
+require("modules.monitors")
 

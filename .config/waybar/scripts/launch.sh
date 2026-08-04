@@ -1,3 +1,9 @@
 #!/bin/bash
 
-pgrep -x "waybar" >/dev/null && pkill waybar || waybar &
+pgrep -x swaync >/dev/null || swaync &
+
+if pgrep -x waybar >/dev/null; then
+    pkill waybar
+else
+    waybar &
+fi
