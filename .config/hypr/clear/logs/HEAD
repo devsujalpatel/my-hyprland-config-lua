@@ -1,4 +1,0 @@
-0000000000000000000000000000000000000000 ddd93057bcd8ce44e188fa2fc3bb4d5317c05c1a Sujal Patel <sujal7455@gmail.com> 1785703995 +0530	commit (initial): seprated config one file to multiple lua files
-ddd93057bcd8ce44e188fa2fc3bb4d5317c05c1a 0000000000000000000000000000000000000000 Sujal Patel <sujal7455@gmail.com> 1785703998 +0530	Branch: renamed refs/heads/master to refs/heads/main
-0000000000000000000000000000000000000000 ddd93057bcd8ce44e188fa2fc3bb4d5317c05c1a Sujal Patel <sujal7455@gmail.com> 1785703998 +0530	Branch: renamed refs/heads/master to refs/heads/main
-ddd93057bcd8ce44e188fa2fc3bb4d5317c05c1a 51483245a34dc3d8a488996eb53e79a7d113f31c Sujal Patel <sujal7455@gmail.com> 1785741739 +0530	commit: waybar and nautilus
