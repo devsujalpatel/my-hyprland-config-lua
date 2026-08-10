@@ -8,3 +8,9 @@ require("modules.misc")
 require("modules.input")
 require("modules.windowrules")
 require("modules.monitors")
+
+-- HyprMod managed settings
+require("hyprland-gui")
+
+-- hyprmon: managed monitor profile include
+require("hyprmon")

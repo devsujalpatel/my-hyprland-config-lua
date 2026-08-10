@@ -1,28 +1,35 @@
-local terminal       = "kitty"
-local fileManager    = "nautilus"
-local menu           = "./.config/rofi/type-2/launcher.sh"
+local terminal = "kitty"
+local fileManager = "nautilus"
+local menu = "./.config/rofi/type-2/launcher.sh"
 local defaultBrowser = "brave"
 
 ---------------------
 ---- KEYBINDINGS ----
 ---------------------
 
-local mainMod        = "SUPER" -- Sets "Windows" key as main modifier
+local mainMod = "SUPER" -- Sets "Windows" key as main modifier
 
 -- Example binds, see https://wiki.hypr.land/Configuring/Basics/Binds/ for more
 hl.bind(mainMod .. " + return", hl.dsp.exec_cmd(terminal))
 local closeWindowBind = hl.bind(mainMod .. " + W", hl.dsp.window.close())
 -- closeWindowBind:set_enabled(false)
-hl.bind(mainMod .. " + M",
-  hl.dsp.exec_cmd("command -v hyprshutdown >/dev/null 2>&1 && hyprshutdown || hyprctl dispatch 'hl.dsp.exit()'"))
-hl.bind(mainMod .. " + SHIFT + F", hl.dsp.exec_cmd(fileManager))
-hl.bind(mainMod .. " +SHIFT + B", hl.dsp.exec_cmd(defaultBrowser))
+hl.bind(
+	mainMod .. " + M",
+	hl.dsp.exec_cmd("command -v hyprshutdown >/dev/null 2>&1 && hyprshutdown || hyprctl dispatch 'hl.dsp.exit()'")
+)
+
 hl.bind(mainMod .. " + T", hl.dsp.window.float({ action = "toggle" }))
-hl.bind(mainMod .. " + SPACE", hl.dsp.exec_cmd(menu))
-hl.bind(mainMod .. " + N", hl.dsp.exec_cmd("swaync-client -t"))
-hl.bind(mainMod .. "+ SHIFT + SPACE", hl.dsp.exec_cmd("/home/sujal/.config/waybar/scripts/launch.sh"))
-hl.bind(mainMod .. " + P", hl.dsp.window.pseudo())
 hl.bind(mainMod .. " + J", hl.dsp.layout("togglesplit")) -- dwindle only
+hl.bind(mainMod .. " + N", hl.dsp.exec_cmd("swaync-client -t"))
+hl.bind(mainMod .. " + P", hl.dsp.window.pseudo())
+hl.bind(mainMod .. " + L", hl.dsp.exec_cmd("hyprlock -c ./.config/hypr/hyprlock/hyprlock.conf"))
+hl.bind(mainMod .. " + CTRL + L", hl.dsp.exec_cmd(""))
+
+
+hl.bind(mainMod .. " +SHIFT + B", hl.dsp.exec_cmd(defaultBrowser))
+hl.bind(mainMod .. " + SPACE", hl.dsp.exec_cmd(menu))
+hl.bind(mainMod .. "+ SHIFT + SPACE", hl.dsp.exec_cmd("/home/sujal/.config/waybar/scripts/launch.sh"))
+hl.bind(mainMod .. " + SHIFT + F", hl.dsp.exec_cmd(fileManager))
 
 -- Screenshot binds --
 hl.bind("Print", hl.dsp.exec_cmd('grim -g "$(slurp)" - | swappy -f -'))
@@ -34,26 +41,22 @@ hl.bind("SUPER + Print", hl.dsp.exec_cmd('grim -g "$(slurp -d)" - | wl-copy'))
 
 local value = "unset"
 
-hl.bind(mainMod .. " + O", function()
-    if value == "unset" then
-        value = "1"
-    else
-        value = "unset"
-    end
+hl.bind(mainMod .. " + BACKSPACE", function()
+	if value == "unset" then
+		value = "1"
+	else
+		value = "unset"
+	end
 
-    hl.dispatch(
-        hl.dsp.window.set_prop({
-            prop = "opacity_override",
-            value = value,
-        })
-    )
+	hl.dispatch(hl.dsp.window.set_prop({
+		prop = "opacity_override",
+		value = value,
+	}))
 
-    hl.dispatch(
-        hl.dsp.window.set_prop({
-            prop = "opacity_inactive_override",
-            value = value,
-        })
-    )
+	hl.dispatch(hl.dsp.window.set_prop({
+		prop = "opacity_inactive_override",
+		value = value,
+	}))
 end)
 -- Move focus with mainMod + arrow keys
 
@@ -65,9 +68,9 @@ hl.bind(mainMod .. " + down", hl.dsp.focus({ direction = "down" }))
 -- Switch workspaces with mainMod + [0-9]
 -- Move active window to a workspace with mainMod + SHIFT + [0-9]
 for i = 1, 10 do
-  local key = i % 10 -- 10 maps to key 0
-  hl.bind(mainMod .. " + " .. key, hl.dsp.focus({ workspace = i }))
-  hl.bind(mainMod .. " + SHIFT + " .. key, hl.dsp.window.move({ workspace = i }))
+	local key = i % 10 -- 10 maps to key 0
+	hl.bind(mainMod .. " + " .. key, hl.dsp.focus({ workspace = i }))
+	hl.bind(mainMod .. " + SHIFT + " .. key, hl.dsp.window.move({ workspace = i }))
 end
 
 -- Example special workspace (scratchpad)
@@ -83,14 +86,26 @@ hl.bind(mainMod .. " + mouse:272", hl.dsp.window.drag(), { mouse = true })
 hl.bind(mainMod .. " + mouse:273", hl.dsp.window.resize(), { mouse = true })
 
 -- Laptop multimedia keys for volume and LCD brightness
-hl.bind("XF86AudioRaiseVolume", hl.dsp.exec_cmd("wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+"),
-  { locked = true, repeating = true })
-hl.bind("XF86AudioLowerVolume", hl.dsp.exec_cmd("wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"),
-  { locked = true, repeating = true })
-hl.bind("XF86AudioMute", hl.dsp.exec_cmd("wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"),
-  { locked = true, repeating = true })
-hl.bind("XF86AudioMicMute", hl.dsp.exec_cmd("wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"),
-  { locked = true, repeating = true })
+hl.bind(
+	"XF86AudioRaiseVolume",
+	hl.dsp.exec_cmd("wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+"),
+	{ locked = true, repeating = true }
+)
+hl.bind(
+	"XF86AudioLowerVolume",
+	hl.dsp.exec_cmd("wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"),
+	{ locked = true, repeating = true }
+)
+hl.bind(
+	"XF86AudioMute",
+	hl.dsp.exec_cmd("wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"),
+	{ locked = true, repeating = true }
+)
+hl.bind(
+	"XF86AudioMicMute",
+	hl.dsp.exec_cmd("wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"),
+	{ locked = true, repeating = true }
+)
 hl.bind("XF86MonBrightnessUp", hl.dsp.exec_cmd("brightnessctl -e4 -n2 set 5%+"), { locked = true, repeating = true })
 hl.bind("XF86MonBrightnessDown", hl.dsp.exec_cmd("brightnessctl -e4 -n2 set 5%-"), { locked = true, repeating = true })
 
