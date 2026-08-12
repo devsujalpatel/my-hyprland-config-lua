@@ -3,7 +3,7 @@
   "width": 1000,
   "modules-left": ["pulseaudio", "cava"],
   "modules-center": ["clock", "hyprland/workspaces", "clock#right"],
-  "modules-right": ["network", "bluetooth", "battery"],
+  "modules-right": ["cpu", "network", "bluetooth", "battery", "custom/power"],
   "clock": {
     "format": "{:%H}",
   },
@@ -30,6 +30,7 @@
   "battery": {
     "interval": 60,
     "format": "{icon} {capacity}% ",
+    "on-click": "",
     "format-icons": {
       "default": ["󰂎", "󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"],
       "charging": ["󰢟", "󰢜", "󰂆", "󰂇", "󰂈", "󰢝", "󰂉", "󰢞", "󰂊", "󰂋", "󰂅"],
@@ -104,4 +105,17 @@
       "on-click-right": "mode",
     },
   },
+
+"custom/power": {
+  "format": "⏻",
+  "tooltip": true,
+  "tooltip-format": "Power Menu",
+  "on-click": "wlogout"
+},
+"cpu": {
+  "format": " {usage}%",
+  "on-click": "kitty btop",
+  "tooltip": true,
+  "tooltip-format": "CPU Usage: {usage}%"
+},
 }

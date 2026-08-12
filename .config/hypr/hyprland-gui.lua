@@ -19,10 +19,13 @@ hl.config({
         rounding = 8,
     },
     ecosystem = {
-        no_donation_nag = true,
+        no_donation_nag = false,
     },
     general = {
-        gaps_out = 10,
+        gaps_out = 7,
+    },
+    misc = {
+        disable_splash_rendering = true,
     },
 })
 
@@ -31,7 +34,7 @@ hl.monitor({
     output = "HDMI-A-2",
     disabled = false,
     mode = "1920x1080@74.97Hz",
-    position = "727x-96",
+    position = "663x-352",
     scale = 0.83,
     cm = "srgb",
 })

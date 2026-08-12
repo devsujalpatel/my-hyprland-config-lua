@@ -70,3 +70,16 @@ window#waybar {
   letter-spacing: 1px;
   margin:  0 12px;
 }
+
+#custom-power {
+  font-size: 1rem;
+  letter-spacing: 1px;
+  margin:  0 6px;
+}
+
+#cpu {
+  font-size: 1rem;
+  letter-spacing: 1px;
+  margin:  0 12px;
+}
+

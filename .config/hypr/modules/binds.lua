@@ -2,6 +2,7 @@ local terminal = "kitty"
 local fileManager = "nautilus"
 local menu = "./.config/rofi/type-2/launcher.sh"
 local defaultBrowser = "brave"
+local secondBrowser = "zen-browser"
 
 ---------------------
 ---- KEYBINDINGS ----
@@ -23,13 +24,14 @@ hl.bind(mainMod .. " + J", hl.dsp.layout("togglesplit")) -- dwindle only
 hl.bind(mainMod .. " + N", hl.dsp.exec_cmd("swaync-client -t"))
 hl.bind(mainMod .. " + P", hl.dsp.window.pseudo())
 hl.bind(mainMod .. " + L", hl.dsp.exec_cmd("hyprlock -c ./.config/hypr/hyprlock/hyprlock.conf"))
-hl.bind(mainMod .. " + CTRL + L", hl.dsp.exec_cmd(""))
+hl.bind(mainMod .. " + CTRL + L", hl.dsp.exec_cmd("wlogout"))
 
 
 hl.bind(mainMod .. " +SHIFT + B", hl.dsp.exec_cmd(defaultBrowser))
 hl.bind(mainMod .. " + SPACE", hl.dsp.exec_cmd(menu))
-hl.bind(mainMod .. "+ SHIFT + SPACE", hl.dsp.exec_cmd("/home/sujal/.config/waybar/scripts/launch.sh"))
+hl.bind(mainMod .. "+ SHIFT + SPACE", hl.dsp.exec_cmd("~/.config/waybar/scripts/launch.sh"))
 hl.bind(mainMod .. " + SHIFT + F", hl.dsp.exec_cmd(fileManager))
+hl.bind(mainMod .. " + SHIFT + Z", hl.dsp.exec_cmd(secondBrowser))
 
 -- Screenshot binds --
 hl.bind("Print", hl.dsp.exec_cmd('grim -g "$(slurp)" - | swappy -f -'))
